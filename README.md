@@ -13,7 +13,7 @@ Este projeto foi desenvolvido como parte da disciplina de **Desenvolvimento Fron
 
 Sobre o Projeto
 
-A ONG patas do amanha é uma organização fictícia dedicada à apoio aos animais, e com incentivo a adoção.  
+A ONG patas do amanha é uma organização fictícia dedicada à apoio e cuidados aos animais, e com incentivo a adoção.  
 O site foi desenvolvido para apresentar os projetos da ONG, incentivar o voluntariado e permitir o cadastro de novos colaboradores, doações, e divulgar nossa historia.
 
 ---
