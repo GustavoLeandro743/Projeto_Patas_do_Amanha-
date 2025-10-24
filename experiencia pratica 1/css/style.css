@@ -1,0 +1,232 @@
+/* Reset Básico */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #06b6d4; /* Ciano mais forte */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 1.1em;
+}
+
+/* Navegação */
+.nav-list a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.nav-list a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Conteúdo Principal */
+main {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.content-block {
+    background-color: #fff;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.secondary-bg {
+    background-color: #e0f7fa; /* Ciano bem claro para destaque */
+}
+
+h2 {
+    color: #0891b2; /* Ciano padrão */
+    border-bottom: 2px solid #06b6d4;
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+
+/* Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+.image-focal-point {
+    text-align: center; /* Centraliza a imagem no container */
+    margin-bottom: 20px;
+}
+
+.centered-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+.hero-section {
+    position: relative; 
+    width: 100%;
+    margin-bottom: 20px; 
+    text-align: center;
+}
+
+.main-hero-image {
+    width: 100%;
+    height: auto;
+    display: block; 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+
+.image-text-overlay-title {
+    position: absolute; 
+    top: 15%; 
+    left: 50%;
+    transform: translateX(-50%);
+    color: #047d96; 
+    font-size: 3em; 
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
+    white-space: nowrap; 
+    z-index: 10; 
+}
+
+.image-text-overlay-subtitle {
+    position: absolute;
+    top: 35%; 
+    left: 50%;
+    transform: translateX(-50%);
+    color: white; 
+    font-size: 1.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    white-space: nowrap;
+    z-index: 10;
+}
+
+/* Botões */
+.btn-primary, .btn-secondary, .btn-submit {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: 10px;
+    border: none;
+}
+
+.btn-primary, .btn-submit {
+    background-color: #ef4444; /* Vermelho/Coral */
+    color: white;
+}
+
+.btn-primary:hover, .btn-submit:hover {
+    background-color: #dc2626;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: #06b6d4; /* Ciano */
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #0891b2;
+    transform: translateY(-1px);
+}
+
+/* Formulário Específico */
+.formulario-container fieldset {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+
+.formulario-container legend {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #0891b2;
+    padding: 0 10px;
+}
+
+.formulario-container label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.formulario-container input[type="text"],
+.formulario-container input[type="email"],
+.formulario-container input[type="tel"],
+.formulario-container input[type="date"],
+.formulario-container select {
+    width: calc(100% - 22px); /* 100% - padding/border */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Garante que padding não estoure o width */
+}
+
+/* Rodapé */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+footer #contato {
+    margin-bottom: 10px;
+}
+
+/* Responsividade Básica (Opcional, mas boa prática) */
+@media (max-width: 600px) {
+    main {
+        padding: 0 10px;
+    }
+    header h1 {
+        font-size: 1.8em;
+    }
+    .nav-list a {
+        display: block;
+        margin-bottom: 5px;
+    }
+}
