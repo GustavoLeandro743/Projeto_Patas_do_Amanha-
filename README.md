@@ -1,4 +1,4 @@
-# Projeto_Patas_do_Amanha-
+# Projeto_Patas_do_Amanha
 
 [![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)]()
 [![HTML](https://img.shields.io/badge/feito%20com-HTML5-orange)]()
