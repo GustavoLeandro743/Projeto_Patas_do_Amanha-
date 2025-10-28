@@ -1,0 +1,231 @@
+/*=============================================================================*/
+/* 0. DESIGN SYSTEM - VARIÁVEIS CSS (:ROOT)                                    */
+/*=============================================================================*/
+
+:root {
+    /* -- CORES -- */
+    --color-primary-main: #2F6D6D;      /* Verde-Azul principal */
+    --color-primary-light: #C4E0E0;      /* Fundo suave / Destaque */
+    
+    --color-secondary-main: #FF7F50;    /* Coral (Ação/Destaque) */
+    --color-secondary-dark: #cc6640;    /* Coral Hover */
+
+    --color-neutral-dark: #1F2937;      /* Texto principal */
+    --color-neutral-medium: #6B7280;    /* Textos secundários / Bordas */
+    --color-neutral-light: #F9FAFB;     /* Fundo da página */
+    --color-feedback-success: #10B981;  /* Sucesso */
+    --color-feedback-error: #EF4444;    /* Erro */
+    --color-feedback-info: #03c8eb;     /* Informação (ADICIONADA) */
+
+    /* -- TIPOGRAFIA -- */
+    --font-family-base: 'Arial', sans-serif;
+    --fs-h1: 3.5rem;
+    --fs-h2: 2.5rem;
+    --fs-h3: 1.75rem;
+    --fs-body: 1rem;
+    --fs-small: 0.875rem;
+
+    /* -- ESPAÇAMENTO MODULAR -- */
+    --space-1x: 8px;    
+    --space-2x: 16px;   
+    --space-3x: 24px;   
+    --space-4x: 32px;   
+    --space-6x: 48px;   
+    --space-8x: 64px;   
+    
+    /* -- TOKENS DE COMPONENTES -- */
+    --border-radius-base: 8px; 
+    --container-max-width: 1200px; 
+}
+
+/* 0.1. Reset e Base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: var(--font-family-base);
+    color: var(--color-neutral-dark); /* Corrigido de #333 */
+    background-color: var(--color-neutral-light); /* Corrigido de #f4f4f4 */
+    line-height: 1.6;
+}
+h1 { font-size: var(--fs-h1); margin-bottom: var(--space-3x); }
+h2 { font-size: var(--fs-h2); margin-bottom: var(--space-2x); color: var(--color-primary-main); }
+h3 { font-size: var(--fs-h3); margin-bottom: var(--space-1x); }
+a { text-decoration: none; color: var(--color-primary-main); transition: color 0.2s; }
+a:hover { color: var(--color-secondary-main); }
+
+/* Remove marcadores de listas */
+.nav-desktop ul, .dropdown-menu, .nav-mobile ul, main ul {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+
+/*=============================================================================*/
+/* 1. LAYOUT PRINCIPAL (CSS GRID)                                              */
+/*=============================================================================*/
+
+.container-grid {
+    display: grid;
+    min-height: 100vh;
+    grid-template-areas:
+        "header"
+        "content-main" 
+        "sidebar"
+        "footer";
+    grid-template-columns: 1fr;
+    gap: var(--space-3x); 
+}
+.header { grid-area: header; padding: 0; } 
+.sidebar { 
+    grid-area: sidebar; 
+    padding: var(--space-3x); 
+    background-color: var(--color-primary-light); 
+    border-radius: var(--border-radius-base);
+}
+.content-main { 
+    grid-area: content-main; 
+    padding: 0 var(--space-4x);
+}
+.footer { grid-area: footer; }
+
+/* Grid de 12 Colunas */
+.grid-container { 
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-3x); 
+    margin: var(--space-4x) 0;
+}
+.col-12 { grid-column: span 12; }
+.col-8, .col-6, .col-4 { grid-column: span 12; } 
+
+
+/*=============================================================================*/
+/* 2. NAVEGAÇÃO E HEADER (FLEXBOX)                                             */
+/*=============================================================================*/
+
+.header-main {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-2x) var(--space-4x);
+    
+    background-color: var(--color-primary-main);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.logo a { color: white; font-size: var(--fs-h3); font-weight: bold; }
+.nav-desktop ul { display: flex; gap: var(--space-3x); align-items: center; }
+.nav-desktop a { padding: var(--space-1x); color: white; }
+.nav-desktop a:hover { color: var(--color-secondary-main); }
+
+/* Dropdown */
+.dropdown { position: relative; }
+.dropdown-menu {
+    position: absolute; top: 100%; left: 0; min-width: 180px; background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); z-index: 100; border-radius: var(--space-1x);
+    opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; 
+}
+.dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; }
+.dropdown-menu li a { display: block; padding: var(--space-1x) var(--space-2x); color: var(--color-neutral-dark); }
+.dropdown-menu li a:hover { background-color: var(--color-neutral-light); }
+
+/* Menu Hambúrguer (Base Mobile) */
+.btn-menu-mobile { display: none; } 
+.btn-menu-mobile.is-open .icon-bar:nth-child(2) { opacity: 0; } /* Animação simples JS */
+
+.nav-mobile { 
+    display: none; /* Escondido por JS/CSS */
+    position: absolute; top: 100%; left: 0; width: 100%; z-index: 50;
+    background-color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.nav-mobile.active { display: block; }
+.nav-mobile ul { flex-direction: column; padding: var(--space-3x); }
+.nav-mobile li { border-bottom: 1px solid var(--color-neutral-light); }
+.nav-mobile a, .nav-mobile button { 
+    display: block; width: 100%; padding: var(--space-2x); color: var(--color-neutral-dark); 
+}
+
+/*=============================================================================*/
+/* 3. COMPONENTES E ESTILOS GERAIS                                             */
+/*=============================================================================*/
+
+.content-block {
+    background-color: #fff; 
+    padding: var(--space-3x); margin-bottom: var(--space-3x); border-radius: var(--border-radius-base);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.card { background-color: white; padding: var(--space-3x); border-radius: var(--border-radius-base); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); height: 100%; }
+
+/* Botões */
+.btn {
+    padding: var(--space-2x) var(--space-4x); font-size: var(--fs-body); font-weight: bold; border: none;
+    border-radius: var(--space-1x); cursor: pointer; transition: background-color 0.2s, transform 0.1s;
+    text-align: center; text-decoration: none; 
+}
+.btn-primary { background-color: var(--color-secondary-main); color: white; }
+.btn-primary:hover { background-color: var(--color-secondary-dark); transform: translateY(-1px); }
+.btn:focus { outline: 2px solid var(--color-primary-main); outline-offset: 2px; }
+
+/* Formulários */
+.form-field { margin-bottom: var(--space-3x); }
+.form-container input, .form-container select, .form-container textarea {
+    width: 100%; padding: var(--space-2x); border: 1px solid var(--color-neutral-medium);
+    border-radius: var(--space-1x); transition: border-color 0.3s;
+}
+input:invalid:focus { border-color: var(--color-feedback-error); box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2); }
+input:valid:not(:placeholder-shown) { border-color: var(--color-feedback-success); } 
+
+/* Rodapé */
+.footer { background-color: var(--color-neutral-dark); color: white; text-align: center; padding: var(--space-4x); font-size: var(--fs-small); }
+.footer a { color: var(--color-secondary-main); }
+
+
+/*=============================================================================*/
+/* 4. BREAKPOINTS RESPONSIVOS (Mobile-First)             */
+/*=============================================================================*/
+
+/* BP 1 & 2: Mobile (max-width: 768px) - Estilos Base */
+@media (max-width: 768px) {
+    /* 1. NAVEGAÇÃO MOBILE: Esconde desktop, mostra hambúrguer */
+    .nav-desktop { display: none; }
+    .btn-menu-mobile { display: flex; }
+    
+    /* 2. LAYOUT PRINCIPAL: Garante que todos os blocos ocupem a largura total */
+    .content-main, .sidebar { padding: 0 var(--space-2x); }
+    .col-4, .col-6, .col-8 { grid-column: span 12; }
+}
+
+/* BP 3: Tablet (min-width: 769px) */
+@media (min-width: 769px) {
+    .nav-desktop { display: flex; }
+    .btn-menu-mobile { display: none; }
+    
+    /* LAYOUT PRINCIPAL: Ativa a sidebar lateral (2 colunas) */
+    .container-grid {
+        grid-template-areas:
+            "header header"
+            "sidebar content-main"
+            "footer footer";
+        grid-template-columns: 200px 1fr; 
+    }
+    .col-4 { grid-column: span 6; } /* 2 cards por linha */
+    .col-6 { grid-column: span 6; }
+}
+
+/* BP 4: Desktop Pequeno (min-width: 992px) */
+@media (min-width: 992px) {
+    /* LAYOUT PRINCIPAL: Sidebar maior e centralização */
+    .container-grid { grid-template-columns: 250px 1fr; }
+    
+    /* LAYOUT ESPECÍFICO: Cards voltam para 3 por linha */
+    .col-4 { grid-column: span 4; } 
+    .col-6 { grid-column: span 6; }
+}
+
+/* BP 5: Desktop Grande (min-width: 1200px) */
+@media (min-width: 1200px) {
+    .container-grid {
+        grid-template-columns: 280px minmax(auto, var(--container-max-width));
+        /* Permite que o conteúdo principal se centralize, mas o Grid ocupe a largura total */
+    }
+}
